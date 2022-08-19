@@ -1,14 +1,5 @@
 "use strict";
-var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
-    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-            ar[i] = from[i];
-        }
-    }
-    return to.concat(ar || Array.prototype.slice.call(from));
-};
-var hobbies = ["Videogames", "Cooking", "Gardening"];
-var activeHobbies = ["Hiking", "Weight Lifting"];
-var hobby1 = hobbies[0], hobby2 = hobbies[1];
-console.log.apply(console, __spreadArray([hobby1, hobby2], hobbies, false));
+const hobbies = ["Videogames", "Cooking", "Gardening"];
+const activeHobbies = ["Hiking", "Weight Lifting"];
+const [hobby1, hobby2] = hobbies;
+console.log(hobby1, hobby2, ...hobbies);

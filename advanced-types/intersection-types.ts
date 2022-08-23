@@ -46,6 +46,9 @@ type Numeric = number | boolean
 type Universal = Combinable | Numeric
 
 // Type Guard - to check if the arguments passed in are string or otherwise
+// This function overload syntax for the accepted arguments and the return type
+function add(a: string, b: string): string
+function add(a: number, b: number): number
 function add(a: Combinable, b: Combinable) {
   if (typeof a === "string" || typeof b === "string") {
     return a.toString() + b.toString()
@@ -140,11 +143,10 @@ moveAnimal({ type: "bird", flyingSpeed: 10 })
 // v1
 // const userInputElement = <HTMLInputElement>document.getElementById("user-input")
 // v2 -- to avoid clashing with JSX syntax in React
-const userInputElement = document.getElementById(
-  "user-input"
-)! as HTMLInputElement
+// const userInputElement = document.getElementById(
+//   "user-input"
+// )! as HTMLInputElement
 // const userInputElement = document.getElementById("user-input")
-userInputElement.value = "hello there"
 // another alternative way to check for it to not be potentially null
 // If it exists, assign its value to Hi there, but identify it as an HTMLInputElement First
 // if (userInputElement) {
@@ -164,6 +166,7 @@ interface ErrorContainer {
 }
 
 // can have as many properties as it needs now!
+// as long as "id" is in it
 const errorBag: ErrorContainer = {
   id: "asd1231",
   email: "Not a valid email",
@@ -185,3 +188,28 @@ function emailError(error: ErrorContainer) {
     message: error.message,
   }
 }
+
+// Function overloads -- allows for defining multiple function signatures
+// We can have multiple function signatures
+// check the original add function for syntax
+const result = add(1, 5) // 6
+const result2 = add("1", "5") // 15
+console.log(result, result2)
+
+// Optional Chaining
+// useful for instances where you are getting data from a backend
+// Where the data is uncertain to be defined
+
+const fetchedUserData = {
+  id: "u1",
+  name: "Max",
+  job: { title: "CEO", description: "My Own Company" },
+}
+
+// attach a '?' to the base property or object if a specific property may or may not exist
+console.log(fetchedUserData?.job?.title)
+
+// Nullish Coalescing
+const userInput = null
+const storedData = userInput ?? 15 // if null, put 15 by default as fallback
+console.log(storedData)
